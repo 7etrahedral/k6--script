@@ -21,5 +21,5 @@ This is a POC for k6 framework, load test framework based on nodejs.
 	```k6 run influxdb=http://localhost:8086/myk6db script.js```
 
 ### Report Example Using Grafana ###
-![Image of Report]
-(https://github.com/7etrahedral/k6-script/blob/main/report_example/grafana_1.png)
+![Image of Report_1!](https://github.com/7etrahedral/k6-script/blob/main/report_example/grafana_1.png)
+![Image of Report_2!](https://github.com/7etrahedral/k6-script/blob/main/report_example/grafana_2.png)
