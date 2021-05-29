@@ -1,30 +1,44 @@
 import http from 'k6/http';
-import { check } from 'k6';
+import { check, group, sleep, fail } from 'k6';
 
 export let options = {
-    vus: 10,
-    duration: '20s',
-  };
+  vus: 1, // 1 user looping for 1 minute
+  duration: '5s',
 
+  thresholds: {
+    http_req_duration: ['p(99)<1500'], // 99% of requests must complete below 1.5s
+  },
+};
 
-export default function () {
-  var url = 'http://test.k6.io/login';
-  var payload = JSON.stringify({
-    email: 'aaa',
-    password: 'bbb',
+const BASE_URL = 'https://test-api.k6.io';
+const USERNAME = 'TestUser';
+const PASSWORD = 'SuperCroc2020';
+
+export default () => {
+  let loginRes = http.post(`${BASE_URL}/auth/token/login/`, {
+    'username': USERNAME,
+    'password': PASSWORD,
   });
 
-  var params = {
+  check(loginRes, {
+    'logged in successfully': (resp) => {
+        if (resp.status !== 200) {
+            console.log(resp.body);
+        }
+        return resp.status == 200;
+    }
+  });
+
+  let authHeaders = {
     headers: {
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${loginRes.json('access')}`,
     },
   };
 
-//   let res = http.post(url, payload, params);
-
-  let res = http.get('http://test.k6.io/')
-
-  check(res, {
-    'is status 200': (r) => r.status === 200,
+  let myObjects = http.get(`${BASE_URL}/my/crocodiles/`, authHeaders).json();
+  check(myObjects, { 'retrieved crocodiles': (obj) => {
+      return obj.length > 0 
+    }
   });
-}
+};
+
