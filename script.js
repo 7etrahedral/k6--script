@@ -10,14 +10,10 @@ export let options = {
   },
 };
 
-const BASE_URL = 'https://test-api.k6.io';
-const USERNAME = 'TestUser';
-const PASSWORD = 'SuperCroc2020';
-
 export default () => {
-  let loginRes = http.post(`${BASE_URL}/auth/token/login/`, {
-    'username': USERNAME,
-    'password': PASSWORD,
+  let loginRes = http.post(`${__ENV.BASE_URL}/auth/token/login/`, {
+    'username': __ENV.USERNAME,
+    'password': __ENV.PASSWORD,
   });
 
   check(loginRes, {
@@ -35,7 +31,7 @@ export default () => {
     },
   };
 
-  let myObjects = http.get(`${BASE_URL}/my/crocodiles/`, authHeaders).json();
+  let myObjects = http.get(`${__ENV.BASE_URL}/my/crocodiles/`, authHeaders).json();
   check(myObjects, { 'retrieved crocodiles': (obj) => {
       return obj.length > 0 
     }

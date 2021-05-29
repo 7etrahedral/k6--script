@@ -1,0 +1,5 @@
+#!/bin/sh
+k6 run influxdb=http://localhost:8086/myk6db script.js \
+    -e BASE_URL='' \
+    -e USERNAME='' \
+    -e PASSWORD=''
