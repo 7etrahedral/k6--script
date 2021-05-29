@@ -1,0 +1,22 @@
+{
+  "name": "k6-script",
+  "version": "0.0.1",
+  "description": "load test demo using k6",
+  "main": "script.js",
+  "scripts": {
+    "test": "k6 run script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7etrahedral/k6-script.git"
+  },
+  "author": "7etrahedral",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7etrahedral/k6-script/issues"
+  },
+  "homepage": "https://github.com/7etrahedral/k6-script#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
