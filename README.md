@@ -8,7 +8,7 @@ This is a POC for k6 framework, load test framework based on nodejs.
 3. Go to folder 
 	```cd k6-script```
 4. Copy and edit shell script
-    ```cp run.sh.sample run.sh
+    ```cp run.sh.sample run.sh```
 5. Make it executable
     Linux and Mac
     ```chmod +x run.sh```
@@ -23,7 +23,7 @@ This is a POC for k6 framework, load test framework based on nodejs.
 3. Go to folder 
 	```cd k6-script```
 4. Copy and edit shell script
-    ```cp run.sh.sample.influxdb run.sh
+    ```cp run.sh.sample.influxdb run.sh```
 5. Make it executable
     Linux and Mac
     ```chmod +x run.sh```
