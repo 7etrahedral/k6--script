@@ -1,5 +1,5 @@
 #!/bin/sh
-k6 run influxdb=http://localhost:8086/myk6db script.js \
+k6 run --out influxdb=http://localhost:8086/myk6db script.js \
     -e BASE_URL='https://test-api.k6.io' \
     -e USERNAME='TestUser' \
     -e PASSWORD='SuperCroc2020'
